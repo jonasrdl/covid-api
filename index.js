@@ -7,7 +7,7 @@ const app = express()
 let getIncidence = async function () {
   try {
     const URL = 'https://corona.karlsruhe.de/'
-    const browser = await puppetteer.launch({
+    const browser = await puppeteer.launch({
       headless: true,
       args: ['--no-sandbox']
     })
