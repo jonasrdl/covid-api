@@ -7,7 +7,10 @@ const app = express()
 let getIncidence = async function () {
   try {
     const URL = 'https://corona.karlsruhe.de/'
-    const browser = await puppeteer.launch()
+    const browser = await puppetteer.launch({
+      headless: true,
+      args: ['--no-sandbox']
+    })
     const page = await browser.newPage()
     let stadtkreis
     let landkreis
