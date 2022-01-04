@@ -1,6 +1,6 @@
 const express = require('express')
 const puppeteer = require('puppeteer')
-const PORT = 55690
+const PORT: number = 55690
 
 const app = express()
 
