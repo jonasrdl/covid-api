@@ -33,6 +33,8 @@ let getIncidence = async function () {
       landkreis: landkreis
     }
 
+    console.log('fetched')
+
     return result
   } catch (error) {
     console.log(error)
@@ -44,6 +46,8 @@ app.get('/', (_, res) => {
     msg: 'Hello World'
   })
 })
+
+setInterval(getIncidence, 3 * 3600000)
 
 let incidence = getIncidence().then((result) => {
   console.log(result)
