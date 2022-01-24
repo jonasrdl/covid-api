@@ -20,11 +20,11 @@ let getIncidence = async function () {
     await page.setCacheEnabled(false)
     await page.reload({ waitUntil: 'networkidle2' })
 
-    stadtkreis = await page.$x('/html/body/article/div[3]/div/div[2]/p/strong[2]')
+    stadtkreis = await page.$x('/html/body/article/div[3]/div/div[2]/p[2]/strong')
     stadtkreis = stadtkreis.pop()
     stadtkreis = await stadtkreis.getProperty('innerText')
 
-    landkreis = await page.$x('/html/body/article/div[3]/div/div[3]/p[1]/strong[2]')
+    landkreis = await page.$x('/html/body/article/div[3]/div/div[3]/p[2]/strong/strong/strong')
     landkreis = landkreis.pop()
     landkreis = await landkreis.getProperty('innerText')
 
@@ -32,8 +32,6 @@ let getIncidence = async function () {
       stadtkreis: stadtkreis,
       landkreis: landkreis
     }
-
-    console.log('fetched')
 
     return result
   } catch (error) {
@@ -50,7 +48,7 @@ app.get('/', (_, res) => {
 setInterval(getIncidence, 3 * 3600000)
 
 let incidence = getIncidence().then((result) => {
-  console.log(result)
+  console.log('get incidence')
 
   const landkreisIncidence = Math.round(parseFloat(result.landkreis._remoteObject.value))
 
